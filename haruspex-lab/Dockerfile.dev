@@ -1,0 +1,13 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Függőségek telepítése
+COPY package*.json ./
+RUN npm install
+
+# A forráskód volume-ként lesz mountolva, nem kell COPY
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev"]
