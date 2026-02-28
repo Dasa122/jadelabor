@@ -1,16 +1,23 @@
 const teamMembers = [
   {
     name: "Dr. Német Zoltán",
-    role: "user.role",
+    role: "Ügyvezető, Állatorvos",
     phone: "+36-30-606-8142",
     email: "nemet.zoltan@haruspex.hu",
     image: "/img/user.png"
   },
   {
     name: "Demeter–Jeremiás Anett",
-    role: "user.role",
+    role: "Laborvezető",
     phone: "+36-30-677-1065",
     email: "anett@haruspex.hu",
+    image: "/img/user.png"
+  },
+  {
+    name: "Dr. Demeter Csongor",
+    role: "Állatorvos, Laboratóriumi diagnosztika",
+    phone: "+36-30-677-1065",
+    email: "demeter.csongor@haruspex.hu",
     image: "/img/user.png"
   }
 ];
@@ -42,12 +49,12 @@ function TeamCard({ member }) {
               {member.phone}
             </a>
           </p>
-          <p className="flex items-center gap-2">
+          {/* <p className="flex items-center gap-2">
             <span>📧</span>
             <a href={`mailto:${member.email}`} className="hover:text-purple-600 transition">
               {member.email}
             </a>
-          </p>
+          </p> */}
         </div>
       </div>
     </div>
@@ -75,9 +82,16 @@ export default function Contact() {
 
         {/* Csapat kártyák - reszponzív grid */}
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Munkatársaink</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
           {teamMembers.map((member, index) => (
-            <TeamCard key={index} member={member} />
+            <div 
+              key={index} 
+              className={teamMembers.length % 2 !== 0 && index === teamMembers.length - 1 
+                ? "md:col-span-2 md:w-1/2 md:mx-auto" 
+                : ""}
+            >
+              <TeamCard member={member} />
+            </div>
           ))}
         </div>
 
