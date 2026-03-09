@@ -1,0 +1,19 @@
+FROM node:20-alpine
+
+RUN apk add --no-cache git
+
+WORKDIR /app
+
+# Install dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copy source files and build
+COPY . .
+RUN npm run build
+
+# Deploy script
+COPY deploy.sh /deploy.sh
+RUN chmod +x /deploy.sh
+
+CMD ["/deploy.sh"]

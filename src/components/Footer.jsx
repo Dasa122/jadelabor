@@ -45,6 +45,17 @@ export default function Footer() {
           <p className="text-xs text-gray-500">
             &copy; 2026 Haruspex–JADE Laboratórium. Minden jog fenntartva.
           </p>
+          <p className="text-xs text-gray-600 mt-2">
+            A weblapot készítette:{" "}
+            <a
+              href="https://github.com/Dasa122"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition"
+            >
+              Kovágo Gergő (Dasa122)
+            </a>
+          </p>
         </div>
       </div>
     </footer>

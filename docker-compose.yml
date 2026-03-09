@@ -18,6 +18,7 @@ services:
   prod:
     build:
       context: .
-      dockerfile: Dockerfile
-    ports:
-      - "80:80"
+      dockerfile: Dockerfile.deploy
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GITHUB_REPO=Dasa122/jadelabor
