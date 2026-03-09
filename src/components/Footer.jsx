@@ -1,32 +1,51 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   return (
-    <footer className="bg-dark text-white py-6 mt-12">
-      <div className="container mx-auto text-center">
+    <footer className="bg-gray-900 text-white py-10">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
+          {/* Brand */}
+          <div>
+            <p className="font-bold text-lg mb-1">Haruspex–JADE Laboratórium</p>
+            <p className="text-gray-400 text-sm italic">
+              „Hagyományos módszerek – mai döntésekhez"
+            </p>
+          </div>
 
-        <p className="mb-2 font-semibold">
-          Haruspex–JADE Laboratórium
-        </p>
+          {/* Links */}
+          <div>
+            <p className="font-semibold mb-2 text-gray-300">Oldalak</p>
+            <div className="flex flex-col gap-1 text-sm">
+              <Link to="/rolunk" className="text-gray-400 hover:text-white transition no-underline">Rólunk</Link>
+              <Link to="/szolgaltatasok" className="text-gray-400 hover:text-white transition no-underline">Szolgáltatásaink</Link>
+              <Link to="/urlapok" className="text-gray-400 hover:text-white transition no-underline">Űrlapok</Link>
+              <Link to="/kapcsolat" className="text-gray-400 hover:text-white transition no-underline">Kapcsolat</Link>
+            </div>
+          </div>
 
-        <p className="text-sm mb-2">
-          2161 Csomád, Irtványköz 3B
-        </p>
+          {/* Contact */}
+          <div>
+            <p className="font-semibold mb-2 text-gray-300">Elérhetőség</p>
+            <div className="text-sm text-gray-400 space-y-1">
+              <p>📍 2161 Csomád, Irtványköz 3B</p>
+              <p>
+                📧{" "}
+                <a href="mailto:labor@haruspex.hu" className="underline hover:text-white transition">
+                  labor@haruspex.hu
+                </a>
+              </p>
+              <p>📞 Dr. Német Zoltán: +36-30-606-8142</p>
+              <p>📞 Demeter–Jeremiás Anett: +36-30-677-1065</p>
+            </div>
+          </div>
+        </div>
 
-        <p className="text-sm mb-2">
-          <strong>E-mail:</strong>{" "}
-          <a href="mailto:labor@haruspex.hu" className="underline hover:text-gray-300">
-            labor@haruspex.hu
-          </a>
-        </p>
-
-        <p className="text-sm">
-          <strong>Dr. Német Zoltán:</strong> +36-30-606-8142 | 
-          <strong> Demeter–Jeremiás Anett:</strong> +36-30-677-1065
-        </p>
-
-        <p className="text-xs mt-4 text-gray-400">
-          &copy; 2026 Haruspex–JADE Laboratórium. Minden jog fenntartva.
-        </p>
-
+        <div className="border-t border-gray-700 pt-4 text-center">
+          <p className="text-xs text-gray-500">
+            &copy; 2026 Haruspex–JADE Laboratórium. Minden jog fenntartva.
+          </p>
+        </div>
       </div>
     </footer>
   );

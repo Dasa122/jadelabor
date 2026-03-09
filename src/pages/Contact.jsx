@@ -1,3 +1,12 @@
+import { motion } from "framer-motion";
+
+const pageTransition = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: { duration: 0.3 }
+};
+
 const teamMembers = [
   {
     name: "Dr. Német Zoltán",
@@ -24,7 +33,7 @@ const teamMembers = [
 
 function TeamCard({ member }) {
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-full">
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
       {/* Kép - arányos méret */}
       <div className="aspect-[4/3] w-full overflow-hidden bg-gray-100">
         <img
@@ -63,40 +72,69 @@ function TeamCard({ member }) {
 
 export default function Contact() {
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
+    <motion.div className="min-h-screen bg-gray-50 py-12 px-4" {...pageTransition}>
       <div className="max-w-6xl mx-auto">
         
         {/* Fejléc */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">Kapcsolat</h1>
-          <p className="text-lg text-gray-600">
-            📍 2161 Csomád, Irtványköz 3B.
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">Kapcsolat</h1>
+          <p className="text-lg text-gray-500 italic mb-6">
+            Haruspex–JADE Laboratórium · „Hagyományos módszerek – mai döntésekhez"
           </p>
-          
-          <p className="text-gray-600 mt-2">
-            📧 <a href="mailto:labor@haruspex.hu" className="text-purple-600 hover:underline">
-              labor@haruspex.hu
-            </a>
-          </p>
-        </div>
+
+          <div className="inline-flex flex-col gap-2 text-gray-600">
+            <p className="flex items-center gap-2 justify-center">
+              <span>📍</span> 2161 Csomád, Irtványköz 3B.
+            </p>
+            <p className="flex items-center gap-2 justify-center">
+              <span>📧</span>
+              <a href="mailto:labor@haruspex.hu" className="text-purple-600 hover:underline">
+                labor@haruspex.hu
+              </a>
+            </p>
+          </div>
+        </motion.div>
 
         {/* Csapat kártyák - reszponzív grid */}
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Munkatársaink</h2>
+        <motion.h2
+          className="text-2xl font-bold text-gray-800 mb-6 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5 }}
+        >
+          Munkatársaink
+        </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
           {teamMembers.map((member, index) => (
-            <div 
-              key={index} 
-              className={teamMembers.length % 2 !== 0 && index === teamMembers.length - 1 
-                ? "md:col-span-2 md:w-1/2 md:mx-auto" 
+            <motion.div
+              key={index}
+              className={teamMembers.length % 2 !== 0 && index === teamMembers.length - 1
+                ? "md:col-span-2 md:w-1/2 md:mx-auto"
                 : ""}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
             >
               <TeamCard member={member} />
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Térkép */}
-        <div className="mt-12">
+        <motion.div
+          className="mt-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Megközelítés</h2>
           <div className="rounded-2xl overflow-hidden shadow-lg">
             <iframe
@@ -109,9 +147,9 @@ export default function Contact() {
               src="https://www.google.com/maps/embed/v1/place?q=2161%20Csom%C3%A1d%2C%20Irtv%C3%A1nyk%C3%B6z%203B.&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
             ></iframe>
           </div>
-        </div>
+        </motion.div>
 
       </div>
-    </div>
+    </motion.div>
   );
 }
