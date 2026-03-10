@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-
-const pageTransition = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 },
-  transition: { duration: 0.3 }
-};
+import PageLayout from "../components/PageLayout";
+import PageHeader from "../components/PageHeader";
+import InfoCard from "../components/InfoCard";
+import { tabContent } from "../animations";
 
 const tabs = [
   { id: "bemutatkozas", label: "Bemutatkozás" },
@@ -15,14 +12,37 @@ const tabs = [
   { id: "engedelyek", label: "Engedélyek" },
 ];
 
-const tabContent = {
-  initial: { opacity: 0, y: 10 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -10 },
-  transition: { duration: 0.25 }
-};
+function TabNav({ tabs, activeTab, onSelect }) {
+  return (
+    <motion.div
+      className="flex flex-wrap justify-center gap-2 mb-10"
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.25, duration: 0.5 }}
+    >
+      {tabs.map((tab) => (
+        <button
+          key={tab.id}
+          onClick={() => onSelect(tab.id)}
+          className={`px-5 py-2.5 rounded-full font-medium transition-all border ${
+            activeTab === tab.id
+              ? "bg-purple-600 text-white border-purple-600 shadow-md"
+              : "bg-white text-gray-600 border-gray-300 hover:border-purple-400 hover:text-purple-600"
+          }`}
+        >
+          {tab.label}
+        </button>
+      ))}
+    </motion.div>
+  );
+}
 
 function Bemutatkozas() {
+  const specialties = [
+    { icon: "🧫", title: "Mikrobiológia", text: "Hagyományos baktériumtenyésztésen alapuló vizsgálatok, valamint korongdiffúziós antibiotikum-érzékenységi tesztek végzése." },
+    { icon: "🔬", title: "Parazitológia", text: "Elsősorban Eimeria oociszták mennyiségi meghatározása és fajazonosítása, továbbá különböző bélférgek jelenlétének kimutatása." },
+  ];
+
   return (
     <motion.div className="space-y-6 text-gray-700 leading-relaxed" {...tabContent}>
       <p>
@@ -46,23 +66,8 @@ function Bemutatkozas() {
       <h3 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">Főbb szakterületeink</h3>
 
       <div className="grid md:grid-cols-2 gap-6">
-        {[
-          { icon: "🧫", title: "Mikrobiológia", text: "Hagyományos baktériumtenyésztésen alapuló vizsgálatok, valamint korongdiffúziós antibiotikum-érzékenységi tesztek végzése." },
-          { icon: "🔬", title: "Parazitológia", text: "Elsősorban Eimeria oociszták mennyiségi meghatározása és fajazonosítása, továbbá különböző bélférgek jelenlétének kimutatása." },
-        ].map((item, i) => (
-          <motion.div
-            key={item.title}
-            className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 * i, duration: 0.4 }}
-          >
-            <div className="flex items-center gap-3 mb-3">
-              <span className="text-3xl">{item.icon}</span>
-              <h4 className="text-lg font-semibold text-gray-800">{item.title}</h4>
-            </div>
-            <p className="text-gray-600">{item.text}</p>
-          </motion.div>
+        {specialties.map((item, i) => (
+          <InfoCard key={item.title} icon={item.icon} title={item.title} text={item.text} delay={0.1 * i} />
         ))}
       </div>
 
@@ -72,6 +77,22 @@ function Bemutatkozas() {
         elérhetők, és készséggel állnak partnereink rendelkezésére szakmai kérdések
         és diagnosztikai döntések támogatásában.
       </p>
+    </motion.div>
+  );
+}
+
+function PolicyCard({ icon, title, text, delay = 0 }) {
+  return (
+    <motion.div
+      className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay, duration: 0.4 }}
+    >
+      <h4 className="font-semibold text-gray-800 mb-2">
+        {icon} {title}
+      </h4>
+      <p className="text-gray-600">{text}</p>
     </motion.div>
   );
 }
@@ -110,18 +131,7 @@ function Policy() {
 
       <div className="space-y-5 mt-4">
         {cards.map((card, i) => (
-          <motion.div
-            key={i}
-            className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.08 * i, duration: 0.4 }}
-          >
-            <h4 className="font-semibold text-gray-800 mb-2">
-              {card.icon} {card.title}
-            </h4>
-            <p className="text-gray-600">{card.text}</p>
-          </motion.div>
+          <PolicyCard key={i} icon={card.icon} title={card.title} text={card.text} delay={0.08 * i} />
         ))}
       </div>
 
@@ -190,48 +200,12 @@ export default function About() {
   }, [location.hash]);
 
   return (
-    <motion.div className="min-h-screen bg-gray-50 py-12 px-4" {...pageTransition}>
+    <PageLayout>
       <div className="max-w-4xl mx-auto">
-        <motion.h1
-          className="text-4xl font-bold text-gray-800 text-center mb-2"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          Rólunk
-        </motion.h1>
-        <motion.p
-          className="text-center text-gray-500 mb-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.15, duration: 0.5 }}
-        >
-          Haruspex–JADE Laboratórium
-        </motion.p>
+        <PageHeader title="Rólunk" subtitle="Haruspex–JADE Laboratórium" />
 
-        {/* Tab navigation */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-2 mb-10"
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25, duration: 0.5 }}
-        >
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`px-5 py-2.5 rounded-full font-medium transition-all border ${
-                activeTab === tab.id
-                  ? "bg-purple-600 text-white border-purple-600 shadow-md"
-                  : "bg-white text-gray-600 border-gray-300 hover:border-purple-400 hover:text-purple-600"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </motion.div>
+        <TabNav tabs={tabs} activeTab={activeTab} onSelect={setActiveTab} />
 
-        {/* Tab content */}
         <motion.div
           className="bg-white rounded-2xl shadow-lg p-8 md:p-10"
           initial={{ opacity: 0, scale: 0.97 }}
@@ -245,6 +219,6 @@ export default function About() {
           </AnimatePresence>
         </motion.div>
       </div>
-    </motion.div>
+    </PageLayout>
   );
 }

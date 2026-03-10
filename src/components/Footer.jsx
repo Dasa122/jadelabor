@@ -53,7 +53,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition"
             >
-              Kovágo Gergő (Dasa122)
+              Kővágó Gergő (Dasa122)
             </a>
           </p>
         </div>
