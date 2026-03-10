@@ -85,9 +85,10 @@ function PolicyCard({ icon, title, text, delay = 0 }) {
   return (
     <motion.div
       className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay, duration: 0.4 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ delay, duration: 0.4, ease: "easeOut" }}
     >
       <h4 className="font-semibold text-gray-800 mb-2">
         {icon} {title}

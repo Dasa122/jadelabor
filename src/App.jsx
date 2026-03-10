@@ -25,7 +25,7 @@ function AnimatedRoutes() {
 
 export default function App() {
   return (
-    <Router basename="/jadelabor">
+    <Router basename="/">
       <Navbar />
       <AnimatedRoutes />
       <Footer />
