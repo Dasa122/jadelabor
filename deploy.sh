@@ -15,8 +15,10 @@ REPO_URL="https://${GITHUB_TOKEN}@github.com/${GITHUB_REPO}.git"
 git remote add origin "$REPO_URL"
 git push -f origin gh-pages
 
+CNAME_DOMAIN=$(cat /app/public/CNAME)
+
 echo ""
 echo "========================================"
 echo "  Deployed to GitHub Pages!"
-echo "  https://${GITHUB_REPO%%/*}.github.io/${GITHUB_REPO##*/}/"
+echo "  https://${CNAME_DOMAIN}/"
 echo "========================================"
