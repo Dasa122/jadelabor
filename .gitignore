@@ -31,5 +31,3 @@ docker-compose.override.yml
 notes
 notes.txt
 notes.md
-
-.env

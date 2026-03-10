@@ -3,6 +3,7 @@ set -e
 
 cd /app/dist
 
+rm -rf .git
 git init
 git config user.name "Deploy Bot"
 git config user.email "deploy@jadelabor"
