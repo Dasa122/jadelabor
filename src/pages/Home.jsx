@@ -40,13 +40,13 @@ export default function Home() {
         >
           <div className="flex items-center justify-center gap-6 mb-8">
             <motion.img
-              src="./img/image0_2.png" alt="Haruspex Logo"
+              src={`${import.meta.env.BASE_URL}img/image0_2.png`} alt="Haruspex Logo"
               className="h-28 md:h-36 drop-shadow-2xl"
               variants={fadeInLeft}
               transition={{ duration: 0.7, ease: "easeOut" }}
             />
             <motion.img
-              src="./img/jade-logo.png" alt="JA-DE Logo"
+              src={`${import.meta.env.BASE_URL}img/jade-logo.png`} alt="JA-DE Logo"
               className="h-28 md:h-36 drop-shadow-2xl"
               variants={fadeInRight}
               transition={{ duration: 0.7, ease: "easeOut" }}

@@ -13,21 +13,21 @@ const teamMembers = [
     role: "Ügyvezető, Állatorvos",
     phone: "+36-30-606-8142",
     email: "nemet.zoltan@haruspex.hu",
-    image: "/img/user.png"
+    image: `${import.meta.env.BASE_URL}img/user.png`
   },
   {
     name: "Demeter–Jeremiás Anett",
     role: "Laborvezető",
     phone: "+36-30-677-1065",
     email: "anett@haruspex.hu",
-    image: "/img/user.png"
+    image: `${import.meta.env.BASE_URL}img/user.png`
   },
   {
     name: "Dr. Demeter Csongor",
     role: "Állatorvos, Laboratóriumi diagnosztika",
     phone: "+36-30-677-1065",
     email: "demeter.csongor@haruspex.hu",
-    image: "/img/user.png"
+    image: `${import.meta.env.BASE_URL}img/user.png`
   }
 ];
 

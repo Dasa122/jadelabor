@@ -58,8 +58,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link className="flex items-center gap-2 no-underline" to="/">
-            <img src="./img/image1_2.png" alt="Text" style={{ height: '36px' }} />
-            <img src="./img/image0_2.png" alt="Logo" style={{ height: '36px' }} />
+            <img src={`${import.meta.env.BASE_URL}img/image1_2.png`} alt="Text" style={{ height: '36px' }} />
+            <img src={`${import.meta.env.BASE_URL}img/image0_2.png`} alt="Logo" style={{ height: '36px' }} />
           </Link>
 
           {/* Desktop menu */}
