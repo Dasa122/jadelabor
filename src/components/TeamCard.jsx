@@ -1,11 +1,12 @@
 export default function TeamCard({ member }) {
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-      <div className="aspect-[4/3] w-full overflow-hidden bg-gray-100">
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+      <div className="w-full overflow-hidden bg-gray-100">
         <img
           src={member.image}
           alt={member.name}
-          className="w-full h-full object-cover"
+          className={`w-full object-cover object-top ${member.imageClass || ''}`}
+          style={member.imageStyle || {}}
         />
       </div>
 
