@@ -39,7 +39,7 @@ export default function Forms() {
           icon="📋"
           title="Kísérő levél a trágya és tampon beküldéshez"
           description="Kérjük, a minták beküldésekor mellékelje a kitöltött kísérő levelet. Ez biztosítja a minták azonosíthatóságát és a vizsgálat gyors elvégzését."
-          href="/docs/kisero-level.pdf"
+          href="/docs/Kisero_level_ tragya_es_tampon_bekuldeshez.doc"
           buttonText="PDF letöltése"
         />
       </div>
